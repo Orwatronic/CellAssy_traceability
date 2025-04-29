@@ -104,6 +104,7 @@ parameterForm.addEventListener('submit', async (e) => {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
+                'Origin': window.location.origin
             },
             body: JSON.stringify(formData)
         });
