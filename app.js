@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     PIN: '1234', // Change this to your desired PIN
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwXxsmLBnJ2KCJziae93kny6qeKIww1AKKU7MNxupglsqTw-jFoNgXz9T58xPbhSvRZOw/exec'
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycby4lU6Gak3GMYP8dDc75KwmvgZD1Q7ZNSFh0vZJq4caWMKgRD1u5UNL0AiwtG5rZFnC4A/exec'
 };
 
 // DOM Elements
@@ -99,6 +99,8 @@ parameterForm.addEventListener('submit', async (e) => {
 
     try {
         console.log('Sending data:', formData);
+        console.log('URL:', CONFIG.GOOGLE_SCRIPT_URL);
+        
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
@@ -108,9 +110,21 @@ parameterForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(formData)
         });
 
+        console.log('Response:', response);
+        
         // Since we're using no-cors, we can't read the response
         // We'll assume success if no error is thrown
         showStatus('Data submitted successfully!', 'success');
+        
+        // Log the form data for verification
+        console.log('Form data submitted:', {
+            timestamp: formData.timestamp,
+            code: formData.code,
+            voltage: formData.voltage,
+            temperature: formData.temperature,
+            notes: formData.notes
+        });
+        
         resetForm();
     } catch (error) {
         console.error('Detailed error:', error);
