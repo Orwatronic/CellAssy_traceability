@@ -101,14 +101,15 @@ parameterForm.addEventListener('submit', async (e) => {
         console.log('Sending data:', formData);
         console.log('Using URL:', CONFIG.GOOGLE_SCRIPT_URL);
         
-        // First, try to send the data
+        // Create a form data object
+        const formDataToSend = new FormData();
+        formDataToSend.append('data', JSON.stringify(formData));
+        
+        // Send the data using fetch
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            body: formDataToSend
         });
 
         // Since we're using no-cors, we can't read the response
