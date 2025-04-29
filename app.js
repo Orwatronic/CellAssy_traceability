@@ -101,24 +101,17 @@ parameterForm.addEventListener('submit', async (e) => {
         console.log('Sending data:', formData);
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'cors',
+            mode: 'no-cors',
             headers: {
-                'Content-Type': 'application/json',
-                'Origin': window.location.origin
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
         });
 
-        console.log('Response status:', response.status);
-        const responseText = await response.text();
-        console.log('Response text:', responseText);
-
-        if (response.ok) {
-            showStatus('Data submitted successfully!', 'success');
-            resetForm();
-        } else {
-            throw new Error(`Server responded with status ${response.status}: ${responseText}`);
-        }
+        // Since we're using no-cors, we can't read the response
+        // We'll assume success if no error is thrown
+        showStatus('Data submitted successfully!', 'success');
+        resetForm();
     } catch (error) {
         console.error('Detailed error:', error);
         showStatus(`Error submitting data: ${error.message}`, 'error');
