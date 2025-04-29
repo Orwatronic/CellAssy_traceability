@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     PIN: '1234', // Change this to your desired PIN
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwMvCDd472hkdfpQcB3UXqnBXm3CLCJ3T5rEDIi9zW4t75BMzGBLK8oibMOK8DXZXuG/exec'
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxyg079onditQVRofkp4Luxj1D0XdM1MhKx3xHOxImQWPWg20rZ4Q1rnUlqrE1xREJgWg/exec'
 };
 
 // DOM Elements
@@ -101,6 +101,7 @@ parameterForm.addEventListener('submit', async (e) => {
         console.log('Sending data:', formData);
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
