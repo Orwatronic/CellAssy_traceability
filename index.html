@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Assembly Traceability</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- HTML5 QR Code library -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <!-- PIN Entry Screen -->
+    <div id="pinScreen" class="screen">
+        <div class="pin-container">
+            <h2>Enter PIN</h2>
+            <input type="password" id="pinInput" maxlength="4" pattern="[0-9]*" inputmode="numeric">
+            <p id="pinError" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="mainScreen" class="screen hidden">
+        <!-- Scanner Section -->
+        <div class="scanner-container">
+            <div id="reader"></div>
+            <div id="scanResult" class="scan-result"></div>
+        </div>
+
+        <!-- Parameter Form -->
+        <form id="parameterForm" class="parameter-form">
+            <div class="form-group">
+                <label for="voltage">Voltage (V):</label>
+                <input type="number" id="voltage" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" id="temperature" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes (optional):</label>
+                <textarea id="notes"></textarea>
+            </div>
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+
+        <!-- Submission Status -->
+        <div id="submitStatus" class="submit-status"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
