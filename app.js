@@ -98,6 +98,7 @@ parameterForm.addEventListener('submit', async (e) => {
     };
 
     try {
+        console.log('Sending data:', formData);
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
             headers: {
@@ -106,15 +107,19 @@ parameterForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(formData)
         });
 
+        console.log('Response status:', response.status);
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+
         if (response.ok) {
             showStatus('Data submitted successfully!', 'success');
             resetForm();
         } else {
-            throw new Error('Network response was not ok');
+            throw new Error(`Server responded with status ${response.status}: ${responseText}`);
         }
     } catch (error) {
-        showStatus('Error submitting data. Please try again.', 'error');
-        console.error('Error:', error);
+        console.error('Detailed error:', error);
+        showStatus(`Error submitting data: ${error.message}`, 'error');
     }
 });
 
