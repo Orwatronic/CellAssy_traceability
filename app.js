@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     PIN: '1234', // Change this to your desired PIN
-    GOOGLE_SCRIPT_URL: '', // Add your Google Apps Script Web App URL here
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwMvCDd472hkdfpQcB3UXqnBXm3CLCJ3T5rEDIi9zW4t75BMzGBLK8oibMOK8DXZXuG/exec'
 };
 
 // DOM Elements
