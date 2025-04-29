@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     PIN: '1234', // Change this to your desired PIN
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzgxyCBFVUo6gRaQ5P9rLKxJrYjsAP_O1u1aXAwY6NZJtxCcId-_aSElBUi2Oi0bm8m/exec'
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwXxsmLBnJ2KCJziae93kny6qeKIww1AKKU7MNxupglsqTw-jFoNgXz9T58xPbhSvRZOw/exec'
 };
 
 // DOM Elements
