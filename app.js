@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     PIN: '1234', // Change this to your desired PIN
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwIP1_dWDRHBr36wenTDmFmbN8gbc7LlV16yBaAS1Y15za3ZohHgxZGn6K5MF5JVTa6NA/exec'
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwZhAwN-FnOHb2nT2zQ1kzJagLilOZCkahoqx4HnrAjufePgDFV11gHvA9vTlNAHc2fkg/exec'
 };
 
 // DOM Elements
@@ -101,31 +101,20 @@ parameterForm.addEventListener('submit', async (e) => {
         console.log('Sending data:', formData);
         console.log('Using URL:', CONFIG.GOOGLE_SCRIPT_URL);
         
-        // Create a form data object
-        const formDataToSend = new FormData();
-        formDataToSend.append('data', JSON.stringify(formData));
-        
-        // Send the data using fetch
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
-            body: formDataToSend
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
         });
 
         // Since we're using no-cors, we can't read the response
         // We'll assume success if no error is thrown
         showStatus('Data submitted successfully!', 'success');
-        
-        // Log the form data for verification
-        console.log('Form data submitted:', {
-            timestamp: formData.timestamp,
-            code: formData.code,
-            voltage: formData.voltage,
-            temperature: formData.temperature,
-            notes: formData.notes
-        });
-        
         resetForm();
+        
     } catch (error) {
         console.error('Detailed error:', error);
         showStatus(`Error submitting data: ${error.message}`, 'error');
